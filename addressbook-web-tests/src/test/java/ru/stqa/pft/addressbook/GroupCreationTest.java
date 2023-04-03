@@ -19,17 +19,19 @@ public class GroupCreationTest {
     driver = new FirefoxDriver();
     driver.manage().window().maximize();
     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    driver.get("http://localhost/addressbook/");
+    driver.findElement(By.name("user")).sendKeys("admin");
+    driver.findElement(By.name("pass")).sendKeys("secret");
+    driver.findElement(By.cssSelector("input:nth-child(7)")).click();
+
   }
   @AfterMethod
   public void tearDown() {
     driver.quit();
   }
   @Test
-  public void addgroup() {
-    driver.get("http://localhost/addressbook/");
-    driver.findElement(By.name("user")).sendKeys("admin");
-    driver.findElement(By.name("pass")).sendKeys("secret");
-    driver.findElement(By.cssSelector("input:nth-child(7)")).click();
+  public void testGroupCreation() {
+
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
     driver.findElement(By.name("group_name")).click();
