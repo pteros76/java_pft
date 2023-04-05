@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase{
 
@@ -46,5 +47,16 @@ public class ContactHelper extends HelperBase{
     public void initContactModification() {
        // click(By.xpath("/html/body/div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a"));
         click(By.cssSelector("img[alt='Edit']"));
+    }
+    public void createContact(ContactData contactData) {
+        initContactCreation();
+        fillContactForm(contactData,true);
+        submitContactCreation();
+        returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.cssSelector("img[alt='Edit']"));
+
     }
 }
